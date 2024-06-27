@@ -29,10 +29,10 @@ jobs:
           PGPASSWORD: password
         run: |
             pwd
-            sudo chmod -R 777 /home/runner/work/SampleWebApp/SampleWebApp
-            psql -U postgres
+            # sudo chmod -R 777 /home/runner/work/SampleWebApp/SampleWebApp
+            psql -h localhost -U cleen_api -d cleen -c 'SHOW config_file'
             # sudo -su postgres psql
-            psql -u postgres -c 'SHOW config_file'
+            # psql -u postgres -c 'SHOW config_file'
       # Checks out the source code of the repository.
       - name: Checkout CLEEN project repository
         uses: actions/checkout@v2
