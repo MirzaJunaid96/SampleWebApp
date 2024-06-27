@@ -29,6 +29,7 @@ jobs:
           PGPASSWORD: password
         run: |
             # curl -sSL https://get.docker.com | bash
+            pwd
             sudo chmod -R 777 /home/runner/work/cleen/cleen
             psql -U postgres
             # sudo -su postgres psql
