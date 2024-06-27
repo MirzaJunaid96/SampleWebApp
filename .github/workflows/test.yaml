@@ -1,0 +1,38 @@
+name: Test-run
+
+on:
+  push:
+    branches:
+      - jb-test
+
+
+jobs:
+  build-test-report:
+
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: cleen_api
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: cleen
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+
+      - name: check postgres conf path
+        env:
+          PGPASSWORD: password
+        run: |
+            # curl -sSL https://get.docker.com | bash
+            sudo chmod -R 777 /home/runner/work/cleen/cleen
+            psql -U postgres
+            # sudo -su postgres psql
+            psql -u postgres -c 'SHOW config_file'
+      # Checks out the source code of the repository.
+      - name: Checkout CLEEN project repository
+        uses: actions/checkout@v2
