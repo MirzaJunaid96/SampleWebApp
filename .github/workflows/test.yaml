@@ -28,9 +28,8 @@ jobs:
         env:
           PGPASSWORD: password
         run: |
-            # curl -sSL https://get.docker.com | bash
             pwd
-            sudo chmod -R 777 /home/runner/work/cleen/cleen
+            sudo chmod -R 777 /home/runner/work/SampleWebApp/SampleWebApp
             psql -U postgres
             # sudo -su postgres psql
             psql -u postgres -c 'SHOW config_file'
